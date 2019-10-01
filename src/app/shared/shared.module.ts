@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './components/menu/menu.component';
 import { SharedService } from './shared.service';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   imports: [
@@ -12,11 +13,13 @@ import { SharedService } from './shared.service';
   ],
   declarations: [
     MenuComponent,
+    SpinnerComponent,
   ],
   exports: [
-    MenuComponent,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MenuComponent,
+    SpinnerComponent
   ]
 })
 

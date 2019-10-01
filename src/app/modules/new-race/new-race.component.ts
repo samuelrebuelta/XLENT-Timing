@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
   selector: 'app-new-race',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewRaceComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private sharedService: SharedService
+  ) { }
 
   ngOnInit() {
+    // Ocultamos el spinner al iniciar el componente
+    this.sharedService.showSpinnerSource.next(false);
   }
 
   saveRaceInfo(data) {

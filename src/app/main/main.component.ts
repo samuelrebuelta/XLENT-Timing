@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../shared/shared.service';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  showSpinner: boolean;
+
+  constructor(
+    private sharedService: SharedService
+  ) {
+    this.sharedService.showSpinner$.subscribe(res => {
+      setTimeout(() => { // El timeout elimina la asincronia para que no se quede colgado ningun spinner fijo
+        this.showSpinner = res;
+      }, 0);
+    });
+  }
 
   ngOnInit() {
   }

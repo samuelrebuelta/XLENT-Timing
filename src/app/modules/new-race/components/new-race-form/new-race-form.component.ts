@@ -11,7 +11,9 @@ export class NewRaceFormComponent implements OnInit {
   @Output() saveRaceInfo = new EventEmitter();
   newRaceForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+  ) { }
 
   ngOnInit() {
     // Instanciamos el formulario

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { SharedService } from '../../shared.service';
 
 export const TABS = [
   { id: 0, name: 'Home', path: 'Home' },
@@ -17,7 +18,8 @@ export class MenuComponent implements OnInit {
   TABS = TABS;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private sharedServie: SharedService
   ) {
     // Nos subscribimos a los cambios del router para modificar el estado del menu en caso de cambios de ruta desde fuera del menu
     this.router.events.subscribe(event => {
@@ -38,6 +40,9 @@ export class MenuComponent implements OnInit {
     // Establecemos la tab seleccionada filtrando el listado de tabs y navegamos a ella
     this.currentTab = this.TABS.filter(elem => elem.id === pathId)[0];
     this.router.navigate([`/${this.currentTab.path}`]);
+
+    // Al navegar, ordenamos que se muestre el spinner general
+    this.sharedServie.showSpinnerSource.next(true);
   }
 
 }
